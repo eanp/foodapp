@@ -9,7 +9,7 @@ const {
     DB_DATABASE
 } = process.env
 
-//ambil objek config
+// config
 const config = {
     host: process.env.DB_SERVER,
     user: process.env.DB_USER,
@@ -18,5 +18,4 @@ const config = {
 }
 
 const myconn = mysql.createConnection(config);
-
 module.exports = myconn;
