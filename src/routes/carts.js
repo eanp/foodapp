@@ -12,10 +12,12 @@ const {
 
 // Item Controller (CRUD)
 
-// Employee register item (CREATE)
-router.post('/', (req, res) => {
+// User create cart (CREATE)
+router.post('/:id_user', auth, roleUser, (req, res) => {
     const {
-        id_user,
+        id_user
+    } = req.params;
+    const {
         id_item,
         item_quantity,
     } = req.body;
@@ -27,37 +29,48 @@ router.post('/', (req, res) => {
         res.send(result);
         console.log(err);
     })
-
 })
 
 
 // user get all cart (READ)
-router.get('/', (req, res) => {
-    mysql.execute('SELECT * FROM carts', [], (err, result, field) => {
-        res.send(result);
+router.get('/:id_user', auth, roleUser, (req, res) => {
+    const {
+        id_user
+    } = req.params;
+    const is_active = 0;
+    mysql.execute('SELECT id_item, itemname, item_quantity FROM carts INNER JOIN  WHERE id_user=? and is_active=?', [], (err, result, field) => {
+        res.send({
+            user: id_user,
+            status: 200,
+            result: result
+        });
     })
 })
 
 // user edit cart (UPDATE)
-router.put('/:id', (req, res) => {
+router.put('/:id', auth, roleUser, (req, res) => {
     const {
         id
     } = req.params;
     const {
-        id_user,
         id_item,
         item_quantity,
     } = req.body;
+    const is_active = [0];
     const updated_cart_on = new Date();
-    const sql = `UPDATE carts SET id_user=?, id_item=?, item_quantity=?,updated_cart_on=? WHERE id=?`;
-    mysql.execute(sql, [id_user, id_item, item_quantity, updated_cart_on, id], (err, result, field) => {
-        res.send(result);
+    const sql = `UPDATE carts SET  id_item=?, item_quantity=?,updated_cart_on=? WHERE id=? and is_active=?`;
+    mysql.execute(sql, [id_item, item_quantity, updated_cart_on, id, is_active], (err, result, field) => {
+        res.send({
+            cart_id: id,
+            status: 200,
+            result: result
+        });
         console.log(err);
     })
 })
 
 // user delete cart (DELETE)
-router.delete('/:id', (req, res) => {
+router.delete('/:id', auth, roleUser, (req, res) => {
     const {
         id
     } = req.params;
@@ -68,27 +81,9 @@ router.delete('/:id', (req, res) => {
     })
 })
 
-// employee detail user 
-router.get('/:id', auth, (req, res) => {
-    const {
-        id
-    } = req.params;
-
-    const sql = 'SElECT * FROM users WHERE id=?'
-    mysql.execute(sql, [id], (err, result, field) => {
-        res.send({
-            success: true,
-            data: result[0]
-        })
-        console.log(user);
-    })
-
-})
-
 // Order Controller (CR)
-
 // user order cart (CREATE)
-router.put('/order/:id', (req, res) => {
+router.put('/order/:id', auth, roleUser, (req, res) => {
     const {
         id
     } = req.params;
@@ -103,14 +98,21 @@ router.put('/order/:id', (req, res) => {
         res.send(result);
         console.log(err);
     })
-
 })
 
-
-// user get all cart (READ)
-router.get('/', (req, res) => {
-    mysql.execute('SELECT * FROM carts WHERE', [], (err, result, field) => {
-        res.send(result);
+// user get all complete order (READ)
+router.get('/order/:id_user', auth, roleUser, (req, res) => {
+    const {
+        id_user
+    } = req.params;
+    const is_active = 1;
+    mysql.execute('SELECT id_item, item_quantity, rating, review FROM carts WHERE id_user=? and is_active=?', [], (err, result, field) => {
+        res.send({
+            user: id_user,
+            status: 200,
+            result: result
+        });
     })
 })
+
 module.exports = router;

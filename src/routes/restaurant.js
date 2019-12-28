@@ -39,7 +39,7 @@ const upload = multer({
     fileFilter: fileFilter
 });
 
-router.put('/foto/:id', upload.single('image'), (req, res) => {
+router.put('/item/foto/:id', upload.single('image'), (req, res) => {
     const {
         id
     } = req.params;
@@ -53,7 +53,7 @@ router.put('/foto/:id', upload.single('image'), (req, res) => {
 
 //
 // Item Controller (CRUD)
-//
+// //
 // router.get('/:id', auth, roleRestaurant, async (req, res) => {
 //     try {
 //         let id = req.params.id;
@@ -73,66 +73,59 @@ router.get('/:id', auth, roleRestaurant, (req, res) => {
     } = req.params;
     mysql.execute(`SELECT * FROM items WHERE restaurant_id=${id}`, [], (err, result, field) => {
         res.send({
-            food_id: result['id'],
-            food_name: result['itemname'],
-            food_price: result['price'],
-            food_desc: result['description'],
-            food_category: result['category']
+            status: 200,
+            result: result
         });
     })
 })
 // SELECT * FROM items WHERE restaurant_id=${id}
 
 // Restaurant register item (CREATE)
-const restaurant_id = 'SELECT * FROM restaurants INNER JOIN users restaurants.user_id=users.id';
 
-router.post('/:?', (req, res) => {
+router.post('/:restaurant_id', auth, roleRestaurant, (req, res) => {
+    const {
+        restaurant_id
+    } = req.params;
     const {
         itemname,
         price,
-        image,
         description,
         category,
     } = req.body;
-    const restaurant_id = req.params;
     const created_on = new Date();
     const updated_on = new Date();
-    const sql = `INSERT INTO items (itemname,price,image,description,category,restaurant_id,created_on,updated_on) VALUES (?,?,?,?,?,?,?,?)`;
-    mysql.execute(sql, [itemname, price, image, description, category, restaurant_id, created_on, updated_on], (err, result, field) => {
+    const sql = `INSERT INTO items (itemname,price,description,category,restaurant_id,created_on,updated_on) VALUES (?,?,?,?,?,?,?)`;
+    mysql.execute(sql, [itemname, price, description, category, restaurant_id, created_on, updated_on], (err, result, field) => {
         res.send(result);
         console.log(err);
     })
-
-
 })
 
 
 
-// employee edit item (UPDATE)
-router.put('/:id', (req, res) => {
+// Restaurant edit item (UPDATE)
+router.put('/:id', auth, roleRestaurant, (req, res) => {
     const {
         id
     } = req.params;
     const {
         itemname,
         price,
-        image,
         description,
         category,
-        restaurant_id
     } = req.body;
     const updated_on = new Date();
-    const sql = `UPDATE items SET itemname=?, price=?, image=?, description=?, category=?, restaurant_id=?, updated_on=? WHERE id=?`;
+    const sql = `UPDATE items SET itemname=?, price=?, description=?, category=?, updated_on=? WHERE id=?`;
     mysql.execute(sql, [itemname, price,
-        image, description, category, restaurant_id, updated_on, id
+        description, category, updated_on, id
     ], (err, result, field) => {
         res.send(result);
         console.log(err);
     })
 })
 
-// employee delete user (DELETE)
-router.delete('/:id', (req, res) => {
+// Restaurant delete item (DELETE)
+router.delete('/:id', auth, roleRestaurant, (req, res) => {
     const {
         id
     } = req.params;
@@ -141,23 +134,6 @@ router.delete('/:id', (req, res) => {
         res.send(result);
         console.log(err);
     })
-})
-
-// employee detail user 
-router.get('/:id', auth, (req, res) => {
-    const {
-        id
-    } = req.params;
-
-    const sql = 'SElECT * FROM users WHERE id=?'
-    mysql.execute(sql, [id], (err, result, field) => {
-        res.send({
-            success: true,
-            data: result[0]
-        })
-        console.log(user);
-    })
-
 })
 
 

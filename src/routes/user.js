@@ -5,11 +5,10 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const mysql = require('../dbconfig');
 const {
-    auth,
-    roleAdmin
+    auth
 } = require('../middleware');
 
-
+// login
 router.post('/', (req, res) => {
     const {
         username,
@@ -23,7 +22,6 @@ router.post('/', (req, res) => {
                 const auth = jwt.sign({
                     username
                 }, process.env.APP_KEY);
-
                 const token = auth;
                 const is_revoked = 0;
                 const created_on = new Date();
@@ -52,30 +50,21 @@ router.post('/', (req, res) => {
             })
         }
     })
-
 })
-
 
 // logout
 router.put('/logout/', auth, (req, res) => {
-
     const token = req.headers.auth_token;
-    const is_revoked = 1;
-    const updated_on = new Date();
-
-    const sql = `UPDATE revoked_token SET is_revoked=?, updated_on=? WHERE token=? `;
-    mysql.execute(sql, [is_revoked, updated_on, token], (err, result, field) => {
+    const is_revoked = '1';
+    const sql = `UPDATE revoked_token SET is_revoked=? WHERE token=? `;
+    mysql.execute(sql, [is_revoked, token], (err, result, field) => {
         res.send({
             result,
             msg: req.headers.auth_token
         });
         console.log(err);
     })
-
 })
-
-
-
 
 // register user
 router.post('/', (req, res) => {
@@ -83,35 +72,14 @@ router.post('/', (req, res) => {
         username,
         password
     } = req.body;
-
     const enc_pass = bcrypt.hashSync(password);
-
     const created_on = new Date();
     const updated_on = new Date();
     const sql = 'INSERT INTO users (username,password,created_on,updated_on) VALUES(?,?,?,?)';
-
     mysql.execute(sql, [username, enc_pass, created_on, updated_on], (err, result, field) => {
         res.send(result);
         console.log(err);
     })
-
-})
-
-
-router.get('/:id', auth, (req, res) => {
-    const {
-        id
-    } = req.params;
-
-    const sql = 'SElECT * FROM users WHERE id=?'
-    mysql.execute(sql, [id], (err, result, field) => {
-        res.send({
-            success: true,
-            data: result[0]
-        })
-        console.log(user);
-    })
-
 })
 
 

@@ -1,45 +1,43 @@
 require('dotenv').config();
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const {
     auth
 } = require('./src/middleware');
+//
+// const knex = require('knex')({
+//     client: 'mysql',
+//     connection: {
+//         host: 'localhost',
+//         user: 'root',
+//         password: '',
+//         database: 'foodapp'
+//     }
+// });
 
-// ke router
-const blog = require('./src/routes/blog');
-const user = require('./src/routes/user');
+// Router
 const admin = require('./src/routes/admin');
+const restaurant = require('./src/routes/restaurant');
+const user = require('./src/routes/user');
+const carts = require('./src/routes/carts');
+const guest = require('./src/routes/guest');
 
 const app = express();
-
 
 app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(bodyParser.json());
 
-
-// pake router
-app.use('/blog', auth, blog);
-app.use('/user', user);
+// Use Router
 app.use('/admin', admin);
+app.use('/restaurant', restaurant);
+app.use('/user', user);
+app.use('/carts', carts);
+app.use('/', guest);
 
 // port
 const port = process.env.APP_PORT;
-
-
-app.get('/', (req, res) => {
-    res.send('Hello world');
-})
-
-app.post('/', (req, res) => {
-    res.send(req.body);
-    console.log(req.body);
-})
-
-
-//
 app.listen(port, () => {
     console.log('App listen on port 8080');
 })

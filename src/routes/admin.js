@@ -19,7 +19,6 @@ const storage = multer.diskStorage({
 })
 
 // Admin (CRUD) Restaurant
-
 // Admin Upload Foto
 const fileFilter = (req, file, callback) => {
     if (!file.originalname.match(/\.(jpg|jpeg|png|JPG|JPEG|PNG)$/)) {
@@ -42,12 +41,11 @@ router.put('/resto/foto/:id', upload.single('image'), (req, res) => {
         res.send(result);
         console.log(err);
     })
-
 })
 
 
 // Admin Register Resto Create
-router.post('/resto/', (req, res) => {
+router.post('/resto/', auth, roleAdmin, (req, res) => {
     const image = null;
     const {
         name,
@@ -66,7 +64,7 @@ router.post('/resto/', (req, res) => {
 })
 
 // admin edit Resto (UPDATE)
-router.put('/resto/:id', (req, res) => {
+router.put('/resto/:id', auth, roleAdmin, (req, res) => {
     const {
         id
     } = req.params;
@@ -86,7 +84,7 @@ router.put('/resto/:id', (req, res) => {
 })
 
 // admin delete restaurants (DELETE)
-router.delete('/resto/:id', (req, res) => {
+router.delete('/resto/:id', auth, roleAdmin, (req, res) => {
     const {
         id
     } = req.params;
@@ -96,18 +94,26 @@ router.delete('/resto/:id', (req, res) => {
         console.log(err);
     })
 })
+
 // --------------------------------------------------------
 // employee get all item (READ)
-router.get('/', (req, res) => {
-    mysql.execute('SELECT * FROM restaurants', [], (err, result, field) => {
-        res.send(result);
+router.get('/resto/', auth, roleAdmin, (req, res) => {
+    const sql = `SELECT name, user_id, description, image, longtitude, latitude FROM restaurants`;
+    mysql.execute(sql, [], (err, result, field) => {
+        res.send({
+            status: 200,
+            result
+        });
     })
 })
 
 // admin get all user (READ)
 router.get('/user/', auth, roleAdmin, (req, res) => {
-    mysql.execute('SELECT * FROM users', [], (err, result, field) => {
-        res.send(result);
+    mysql.execute('SELECT id, username, role_id FROM users', [], (err, result, field) => {
+        res.send({
+            status: 200,
+            result
+        });
     })
 })
 // ---------------------------------------------------------
@@ -160,8 +166,5 @@ router.delete('/user/:id', auth, roleAdmin, (req, res) => {
         console.log(err);
     })
 })
-
-//
-
 
 module.exports = router;

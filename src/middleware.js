@@ -4,7 +4,6 @@ const mysql = require('./dbconfig');
 const auth = (req, res, next) => {
     if (req.headers['authorization'] &&
         req.headers['authorization'].startsWith('Bearer')) {
-
         const jwt_token = req.headers['authorization'].substr(7);
         req.headers.auth_token = jwt_token;
         mysql.execute('SELECT token from revoked_token where token=? and is_revoked=1', [jwt_token], (err, result, field) => {
@@ -22,12 +21,7 @@ const auth = (req, res, next) => {
                 } else {
                     try {
                         const user = jwt.verify(jwt_token, process.env.APP_KEY);
-                        const who = user['username'];
-
-                        // const resto_id = `SELECT id FROM users WHERE username=${who}`;
-                        // const hasil = mysql.execute(resto_id, (err, result, field) => {
-                        //     console.log(hasil)
-                        // });
+                        // const who = user['username'];
                         next();
                     } catch (e) {
                         res.send({
@@ -38,7 +32,6 @@ const auth = (req, res, next) => {
                 }
             }
         })
-
     } else {
         res.send({
             success: false,
@@ -79,7 +72,6 @@ const roleUser = (req, res, next) => {
         res.send('you not user')
     }
 }
-
 
 module.exports = {
     auth,
