@@ -9,7 +9,7 @@ const {
 } = require('../middleware');
 
 // login
-router.post('/', (req, res) => {
+router.post('/login/', (req, res) => {
     const {
         username,
         password
@@ -67,7 +67,7 @@ router.put('/logout/', auth, (req, res) => {
 })
 
 // register user
-router.post('/', (req, res) => {
+router.post('/register/', (req, res) => {
     const {
         username,
         password
