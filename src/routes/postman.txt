@@ -1,8 +1,31 @@
+// guest get item of restaurant
+
+// searching ------------ get
+http://localhost:8080/search/
+    query
+name:
+price:
+rating:1-5
+
+// sorting -------------- get
+http://localhost:8080/sort/
+name[]:asc/dsc
+price[]:
+rating[]:
+update_on[]:
+
+// get item by pagination
+http://localhost:8080/page/
+page: 1
+limits: your items sum in page (5/10)
+
+// get all item
+http://localhost:8080/
+
 //
 // User route ----------------------------------------------------------------------
 //
 
-// get etc
 
 //
 
@@ -16,6 +39,7 @@ http: //localhost:8080/user/
     x - form
 username: admin
 password: admin
+    login for get your bearer token
 
 //  logout ------------ put
 http: //localhost:8080/user/logout/
@@ -189,6 +213,13 @@ role_id:3
 
 // User order cart -------- put
 http://localhost:8080/carts/order/{id_of_cart}
+    bearer token
+- headers
+Content-Type:application/x-www-form-urlencoded
+role_id:3
+
+// User give a rating and review -------- put
+http://localhost:8080/carts/order/feedback/{id_of_cart}
     bearer token
 - headers
 Content-Type:application/x-www-form-urlencoded

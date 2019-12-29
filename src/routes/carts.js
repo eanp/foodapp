@@ -87,14 +87,36 @@ router.put('/order/:id', auth, roleUser, (req, res) => {
     const {
         id
     } = req.params;
+    const is_active = 1;
+    const updated_cart_on = new Date();
+    const sql = `UPDATE carts SET is_active=?, updated_cart_on=? WHERE id=?`;
+    mysql.execute(sql, [is_active, updated_cart_on, id], (err, result, field) => {
+        const total = id;
+        const total_sql = `SELECT users.username,carts.id AS id_order, id_item , items.itemname, item_quantity, price, (price*item_quantity) AS total FROM carts 
+        INNER JOIN items ON carts.id_item=items.id 
+                INNER JOIN users ON carts.id_user=users.id
+                WHERE carts.id=?`
+        mysql.execute(total_sql, [total], (err, result, field) => {
+            res.send({
+                status: 200,
+                result
+            });
+            console.log(err);
+        })
+    })
+})
+// user input feedback (rating & review)
+router.put('/order/feedback/:id', auth, roleUser, (req, res) => {
+    const {
+        id
+    } = req.params;
     const {
         rating,
         review,
     } = req.body;
-    const is_active = 1;
     const created_feedback_on = new Date();
-    const sql = `UPDATE carts SET rating=?, review=?, is_active=?, created_feedback_on=? WHERE id=?`;
-    mysql.execute(sql, [rating, review, is_active, created_feedback_on, id], (err, result, field) => {
+    const sql = `UPDATE carts SET rating=?, review=?,created_feedback_on=? WHERE id=?`;
+    mysql.execute(sql, [rating, review, created_feedback_on, id], (err, result, field) => {
         res.send(result);
         console.log(err);
     })
