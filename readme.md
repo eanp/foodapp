@@ -62,27 +62,15 @@ DB_DATABASE=foodapp
 **. GUEST**
 * `/`
 * `/search/`
-`by query ->
-    name:name   -
-    price:price -
-    rating:1-5`
+    * ``` {query, name:byname, price:1000, rating:(1-5)  } ```
 * `/sort/`
-`by query ->
-    name[]:asc/dsc - 
-    price[]:    -
-    rating[]:   -
-    update_on[]:
-`
-* `/page/` 
-`by query ->
-    page:1 -
-limits:limit items in page(5/10)
-`
+    * ``` {query, name[]:asc/dsc, rating[]:, price[]:, rating[]:, update_on[]: } ```
+* `/page/`
+    * ``` {xform, page:1, limits:5/10 } ```
 
 **. USER**
 <!-- * `/note`
     * ``` { "title": "Party", "note": "Herman's Party at 19.00", "category": 1 } ``` -->
-
 * `/user/register`
     * ``` {xform, username: yourname,password: yourpassword } ```
 
@@ -92,101 +80,50 @@ limits:limit items in page(5/10)
 
 **. ADMIN** 
 **. Bearer token || role_id:1 in header**
+* **. Restaurant CRUD**
 * `/resto/foto/{id_restaurant}/` put
    * ``` {image: yourfilefoto.jpg} ```
 
-`// admin create restaurant -------- post`
-```* 
-/admin/resto/
-name:santuy
-user_id: {id restaurant}
-description: description
-longtitude: longtitude
-latitude:apa latitude
-```
+* `/admin/resto/` post
+    * ``` {xform, name:restoname, user_id:id_user_to_resto, description:, longtitude:, latitude:,} ```
 
-`// admin edit restaurant ------ put `
-* /admin/resto/{id_restaurant}
-name:santuy
-user_id: {id restaurant}
-description: description
-longtitude: longtitude
-latitude:apa latitude
+* `/admin/resto/{id_restaurant}` put
+    * ``` {xform, name:restoname, user_id:id_user_to_resto, description:, longtitude:, latitude:,} ```
 
-// admin delete restaurant --------- delete
-* /admin/resto/{id_restaurant}
-
-// admin get restaurant ---------- get
-* /admin/resto/
-
-// Admin create user -------- post
-* /admin/user/
-username: admin
-password: admin
-
-// admin edit user ------------- put
-* /admin/user/{id_user}
-username: 
-role_id: 1/ 2 /3
-
-// admin delete user --------- delete
-* /admin/user/{id_user}
-
-// admin get user  ---------- get
-* /admin/user/
-
+* `/admin/resto/{id_restaurant}` delete
+* `/admin/resto/` get
+* **. User CRUD**
+* `/admin/user/` post
+    * ``` {xform, username:admin, password:admin} ```
+* `/admin/user/{id_user}` put
+    * ``` {xform, username:admin, role_id:1/2/3} ```
+* `/admin/delete/{id_user}` delete
+* `/admin/user/` get
 
 **. Restaurant**
-// Restaurant update item foto ------- put
-* /restaurant/item/foto/{id_restaurant}
-    image: yourfilefoto.jpg
+**. Bearer token || role_id:2 in header**
+* **. Items CRUD**
+* `/restaurant/item/foto/{id_items}/` put
+   * ``` {image: yourfilefoto.jpg} ```
 
-// Restaurant create item ----------- post
-* /restaurant/{your_restaurant_id}     
-itemname:yourfoodname
-price:price in number
-description: desc item
-category: your item category
-
-// Restaurant edit item ----------- put
-* /restaurant/{item_id}
-itemname:yourfoodname
-price:price in number
-description: desc item
-category: your item category
-
-// Restaurant delete item --------- delete
-* /restaurant/{item_id}
-
-// Restaurant get item  ---------- get
-* /restaurant/{your_restaurant_id}
-
+* `/restaurant/{resto_id}` post
+    * ``` {xform, itemname:food, price:1000, desc:, category:1} ```
+* `/restaurant/{item_id}` put
+    * ``` {xform, itemname:food, price:1000, desc:, category:1} ```
+* `/restaurant/{id_item}` delete
+* `/restaurant/{resto_id}` get
 
 **. Cart**
-
-// User create cart ----------- post
-* /carts/{id_user}
-id_item: id of your item 
-item_quantity: quantity of your item
-
-// User edit cart ----------- put
-* /carts/{id_of_cart}     
-id_item: id of your item 
-item_quantity: quantity of your item
-
-// User delete cart ----------- delete
-* /carts/{id_of_cart}
-
-// User get cart  --------- get 
-* /carts/{id_user}
-
-// User order cart -------- put
-* /carts/order/{id_of_cart}
-
-// User give a rating and review -------- put
-* /carts/order/feedback/{id_of_cart}
-rating: rating of your item ordered (1-5)
-review: review of your item ordered
-
-// User get complete order ------ get
-* /carts/order/{id_of_cart}
+**. Bearer token || role_id:3 in header**
+* **. Carts CRUD**
+* `/carts/{id_user}` post
+    * ``` {xform, item_id:, item_quantity} ```
+* `/carts/{id_carts}` put
+    * ``` {xform, item_id:, item_quantity} ```
+* `/carts/{id_carts}` delete
+* `/carts/{id_user}` get
+* **. Order Carts**
+* `/carts/order/{id_carts}` put
+* `/carts/order/feedback/{id_carts}` put
+    * ``` {xform, rating:1-5, review:review_order} ```
+* `/carts/order/{id_order}` get complete order
