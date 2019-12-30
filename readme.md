@@ -56,7 +56,18 @@ DB_DATABASE=foodapp
          └── storage                
                └── image           # File for save image
 
-   
+## Default user 
+```
+default password is admin
+
+admin (as admin)
+mcdonald (as restaurant)
+pizza (as restaurant)
+bensu (as restaurant)
+hokben (as restaurant)
+janjijiwa (as restaurant)
+user (as user)
+```
 
 ## End Point
 **. GUEST**
