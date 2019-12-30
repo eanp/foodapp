@@ -100,6 +100,7 @@ DB_DATABASE=foodapp
 * `/admin/delete/{id_user}` delete
 * `/admin/user/` get
 
+
 **. Restaurant**
 **. Bearer token || role_id:2 in header**
 * **. Items CRUD**
