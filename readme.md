@@ -20,7 +20,7 @@ Express.js is a web application framework for Node.js. [More about Express](http
 2. Type `npm install`
 3. Download some package
    `npm init -y`
-   `npm i express mysql2 body-parser jsonwebtoken bcryptjs dotenv`
+   `npm i express mysql2 body-parser jsonwebtoken bcryptjs dotenv multer`
 4. Download nodemon for automatic checker
    `npm i -g nodemon`
 5. Make new file a called **.env**, open in your favorite code editor and copy paste this code:
