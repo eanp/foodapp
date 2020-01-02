@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const {
     auth
@@ -21,13 +22,13 @@ const restaurant = require('./src/routes/restaurant');
 const user = require('./src/routes/user');
 const carts = require('./src/routes/carts');
 const guest = require('./src/routes/guest');
-
 const app = express();
 
 app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(bodyParser.json());
+app.use(cors());
 
 // Use Router
 app.use('/admin', admin);

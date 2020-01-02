@@ -37,8 +37,7 @@ router.get('/:id_user', auth, roleUser, (req, res) => {
     const {
         id_user
     } = req.params;
-    const is_active = 0;
-    mysql.execute('SELECT id_item, itemname, item_quantity FROM carts INNER JOIN  WHERE id_user=? and is_active=?', [], (err, result, field) => {
+    mysql.execute('SELECT id_item, itemname, item_quantity FROM carts INNER JOIN  WHERE id_user=? and is_active=?', [id_user], (err, result, field) => {
         res.send({
             user: id_user,
             status: 200,
