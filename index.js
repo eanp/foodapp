@@ -42,3 +42,8 @@ const port = process.env.APP_PORT;
 app.listen(port, () => {
     console.log('App listen on port 8080');
 })
+require('http').createServer(function(request, response) {
+  request.addListener('end', function() {
+    file.serve(request, response);
+  }).resume();
+}).listen(process.env.PORT || 8080);
