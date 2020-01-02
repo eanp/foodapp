@@ -38,10 +38,12 @@ app.use('/carts', carts);
 app.use('/', guest);
 
 // port
-const port = process.env.APP_PORT;
-app.listen(port, () => {
-    console.log('App listen on port 8080');
-})
+// const port = process.env.APP_PORT;
+// app.listen(port, () => {
+//     console.log('App listen on port 8080');
+// })
+var static = require('node-static');
+var file = new static.Server();
 require('http').createServer(function(request, response) {
   request.addListener('end', function() {
     file.serve(request, response);
