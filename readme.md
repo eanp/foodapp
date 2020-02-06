@@ -26,7 +26,7 @@ Express.js is a web application framework for Node.js. [More about Express](http
 5. Make new file a called **.env**, open in your favorite code editor and copy paste this code:
 ```
 APP_PORT=8080
-APP_URI=htpp://localhost:8080/
+APP_URI=://localhost:8080/
 APP_KEY=santuy
 DB_SERVER=localhost
 DB_USER=root

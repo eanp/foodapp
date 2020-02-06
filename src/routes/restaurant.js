@@ -39,7 +39,7 @@ const upload = multer({
     fileFilter: fileFilter
 });
 
-router.put('/item/foto/:id', upload.single('image'), (req, res) => {
+router.put('/foto/:id', upload.single('image'), (req, res) => {
     const {
         id
     } = req.params;
@@ -67,7 +67,7 @@ router.put('/item/foto/:id', upload.single('image'), (req, res) => {
 //     }
 // })
 // employee get all item(READ)
-router.get('/:id', auth, roleRestaurant, (req, res) => {
+router.get('/:id/', auth, (req, res) => {
     const {
         id
     } = req.params;
@@ -81,8 +81,7 @@ router.get('/:id', auth, roleRestaurant, (req, res) => {
 // SELECT * FROM items WHERE restaurant_id=${id}
 
 // Restaurant register item (CREATE)
-
-router.post('/:restaurant_id', auth, roleRestaurant, (req, res) => {
+router.post('/:restaurant_id', auth, (req, res) => {
     const {
         restaurant_id
     } = req.params;
@@ -102,9 +101,8 @@ router.post('/:restaurant_id', auth, roleRestaurant, (req, res) => {
 })
 
 
-
 // Restaurant edit item (UPDATE)
-router.put('/:id', auth, roleRestaurant, (req, res) => {
+router.put('/:id', auth, (req, res) => {
     const {
         id
     } = req.params;
@@ -125,7 +123,7 @@ router.put('/:id', auth, roleRestaurant, (req, res) => {
 })
 
 // Restaurant delete item (DELETE)
-router.delete('/:id', auth, roleRestaurant, (req, res) => {
+router.delete('/:id', auth, (req, res) => {
     const {
         id
     } = req.params;

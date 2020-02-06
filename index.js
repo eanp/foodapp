@@ -29,6 +29,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use(cors());
+app.use('/image/', express.static('storage/image'))
 
 // Use Router
 app.use('/admin', admin);

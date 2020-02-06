@@ -13,7 +13,7 @@ const {
 // Item Controller (CRUD)
 
 // User create cart (CREATE)
-router.post('/:id_user', auth, roleUser, (req, res) => {
+router.post('/:id_user', (req, res) => {
     const {
         id_user
     } = req.params;
@@ -33,7 +33,7 @@ router.post('/:id_user', auth, roleUser, (req, res) => {
 
 
 // user get all cart (READ)
-router.get('/:id_user', auth, roleUser, (req, res) => {
+router.get('/:id_user', (req, res) => {
     const {
         id_user
     } = req.params;
@@ -41,13 +41,14 @@ router.get('/:id_user', auth, roleUser, (req, res) => {
         res.send({
             user: id_user,
             status: 200,
-            result: result
+            result: result,
+            yay: 'nay'
         });
     })
 })
 
 // user edit cart (UPDATE)
-router.put('/:id', auth, roleUser, (req, res) => {
+router.put('/:id', auth, (req, res) => {
     const {
         id
     } = req.params;
@@ -69,7 +70,7 @@ router.put('/:id', auth, roleUser, (req, res) => {
 })
 
 // user delete cart (DELETE)
-router.delete('/:id', auth, roleUser, (req, res) => {
+router.delete('/:id', auth, (req, res) => {
     const {
         id
     } = req.params;
@@ -80,9 +81,11 @@ router.delete('/:id', auth, roleUser, (req, res) => {
     })
 })
 
+
+//edit oy tambah review ama reting
 // Order Controller (CR)
 // user order cart (CREATE)
-router.put('/order/:id', auth, roleUser, (req, res) => {
+router.put('/order/:id', auth, (req, res) => {
     const {
         id
     } = req.params;
@@ -104,35 +107,38 @@ router.put('/order/:id', auth, roleUser, (req, res) => {
         })
     })
 })
-// user input feedback (rating & review)
-router.put('/order/feedback/:id', auth, roleUser, (req, res) => {
-    const {
-        id
-    } = req.params;
-    const {
-        rating,
-        review,
-    } = req.body;
-    const created_feedback_on = new Date();
-    const sql = `UPDATE carts SET rating=?, review=?,created_feedback_on=? WHERE id=?`;
-    mysql.execute(sql, [rating, review, created_feedback_on, id], (err, result, field) => {
-        res.send(result);
-        console.log(err);
-    })
-})
 
 // user get all complete order (READ)
-router.get('/order/:id_user', auth, roleUser, (req, res) => {
+router.get('/order/:id_user', auth, (req, res) => {
     const {
         id_user
     } = req.params;
     const is_active = 1;
-    mysql.execute('SELECT id_item, item_quantity, rating, review FROM carts WHERE id_user=? and is_active=?', [], (err, result, field) => {
+    mysql.execute('SELECT id_item, item_quantity, FROM carts WHERE id_user=? and is_active=?', [], (err, result, field) => {
         res.send({
             user: id_user,
             status: 200,
             result: result
         });
+    })
+})
+
+router.post('/feedback/:id_user/:id_item', (req, res) => {
+    const {
+        id_user,
+        id_item
+    } = req.params;
+    const {
+        rating,
+        review
+    } = req.body;
+    const created_on = new Date();
+    const updated_on = new Date();
+    const sql = `INSERT INTO feedback (id_user,id_item,rating, review,created_on,updated_on) VALUES (?,?,?,?,?,?)`;
+    mysql.execute(sql, [id_user, id_item, rating, review, created_on, updated_on], (err, result, field) => {
+        res.send(result);
+        console.log(id_user, id_item)
+        console.log(err);
     })
 })
 

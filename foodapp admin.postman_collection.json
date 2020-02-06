@@ -1,0 +1,699 @@
+{
+	"info": {
+		"_postman_id": "6d9119fe-babb-4f80-bdec-8b77852b431f",
+		"name": "foodapp admin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "admin post resto",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlciIsImlkIjoxNCwicm9sZXMiOjMsImlhdCI6MTU4MDk4NzkxMX0.DUINGqeTvlHi_647Vbu9CS47zlhJn9gk6n9xQkWJl8E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "warjo",
+							"type": "text"
+						},
+						{
+							"key": "user_id",
+							"value": "14",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "warteg enak",
+							"type": "text"
+						},
+						{
+							"key": "longtitude",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "latitude",
+							"value": "0",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/admin/resto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"admin",
+						"resto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin edit resto",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlciIsImlkIjoxNCwicm9sZXMiOjMsImlhdCI6MTU4MDk4NzkxMX0.DUINGqeTvlHi_647Vbu9CS47zlhJn9gk6n9xQkWJl8E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "warjo",
+							"type": "text"
+						},
+						{
+							"key": "user_id",
+							"value": "14",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "warteg mantap",
+							"type": "text"
+						},
+						{
+							"key": "longtitude",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "latitude",
+							"value": "0",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/admin/resto/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"admin",
+						"resto",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin update resto foto",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlciIsImlkIjoxNCwicm9sZXMiOjMsImlhdCI6MTU4MDk4NzkxMX0.DUINGqeTvlHi_647Vbu9CS47zlhJn9gk6n9xQkWJl8E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/E:/laragon/www/b13/template/f3.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/admin/resto/foto/9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"admin",
+						"resto",
+						"foto",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin delete resto",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlciIsImlkIjoxNCwicm9sZXMiOjMsImlhdCI6MTU4MDk4NzkxMX0.DUINGqeTvlHi_647Vbu9CS47zlhJn9gk6n9xQkWJl8E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4000/admin/resto/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"admin",
+						"resto",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin get resto",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlciIsImlkIjoxNCwicm9sZXMiOjMsImlhdCI6MTU4MDk4NzkxMX0.DUINGqeTvlHi_647Vbu9CS47zlhJn9gk6n9xQkWJl8E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4000/admin/resto/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"admin",
+						"resto",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin post user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlciIsImlkIjoxNCwicm9sZXMiOjMsImlhdCI6MTU4MDk4NzkxMX0.DUINGqeTvlHi_647Vbu9CS47zlhJn9gk6n9xQkWJl8E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "santuyyyy",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/admin/user/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"admin",
+						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin edit user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlciIsImlkIjoxNCwicm9sZXMiOjMsImlhdCI6MTU4MDk4NzkxMX0.DUINGqeTvlHi_647Vbu9CS47zlhJn9gk6n9xQkWJl8E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "santuyyyy",
+							"type": "text"
+						},
+						{
+							"key": "role_id",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/admin/user/15",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"admin",
+						"user",
+						"15"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin delete user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlciIsImlkIjoxNCwicm9sZXMiOjMsImlhdCI6MTU4MDk4NzkxMX0.DUINGqeTvlHi_647Vbu9CS47zlhJn9gk6n9xQkWJl8E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4000/admin/user/15",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"admin",
+						"user",
+						"15"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin get user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlciIsImlkIjoxNCwicm9sZXMiOjMsImlhdCI6MTU4MDk4NzkxMX0.DUINGqeTvlHi_647Vbu9CS47zlhJn9gk6n9xQkWJl8E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4000/admin/user/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"admin",
+						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin post items",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlciIsImlkIjoxNCwicm9sZXMiOjMsImlhdCI6MTU4MDk4NzkxMX0.DUINGqeTvlHi_647Vbu9CS47zlhJn9gk6n9xQkWJl8E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "restaurant_id",
+							"value": "9",
+							"type": "text"
+						},
+						{
+							"key": "itemname",
+							"value": "mie ayam",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "12000",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "noodle with chicken",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "10",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/admin/items/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"admin",
+						"items",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin update item foto",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlciIsImlkIjoxNCwicm9sZXMiOjMsImlhdCI6MTU4MDk4NzkxMX0.DUINGqeTvlHi_647Vbu9CS47zlhJn9gk6n9xQkWJl8E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/E:/laragon/www/b13/template/f3.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/admin/items/foto/9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"admin",
+						"items",
+						"foto",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin edit items",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlciIsImlkIjoxNCwicm9sZXMiOjMsImlhdCI6MTU4MDk4NzkxMX0.DUINGqeTvlHi_647Vbu9CS47zlhJn9gk6n9xQkWJl8E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "restaurant_id",
+							"value": "9",
+							"type": "text"
+						},
+						{
+							"key": "itemname",
+							"value": "mie ayam",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "12000",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "local noodle with chicken",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "10",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/admin/items/23",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"admin",
+						"items",
+						"23"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin delete items",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlciIsImlkIjoxNCwicm9sZXMiOjMsImlhdCI6MTU4MDk4NzkxMX0.DUINGqeTvlHi_647Vbu9CS47zlhJn9gk6n9xQkWJl8E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4000/admin/items/23",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"admin",
+						"items",
+						"23"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin get items",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlciIsImlkIjoxNCwicm9sZXMiOjMsImlhdCI6MTU4MDk4NzkxMX0.DUINGqeTvlHi_647Vbu9CS47zlhJn9gk6n9xQkWJl8E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4000/admin/items/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"admin",
+						"items",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

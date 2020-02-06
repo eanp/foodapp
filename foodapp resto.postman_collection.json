@@ -1,0 +1,261 @@
+{
+	"info": {
+		"_postman_id": "070fd096-bd59-4216-882e-2420ca0a6bc9",
+		"name": "foodapp resto",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "admin get items",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlciIsImlkIjoxNCwicm9sZXMiOjMsImlhdCI6MTU4MDk4NzkxMX0.DUINGqeTvlHi_647Vbu9CS47zlhJn9gk6n9xQkWJl8E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4000/restaurant/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"restaurant",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin post items",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlciIsImlkIjoxNCwicm9sZXMiOjMsImlhdCI6MTU4MDk4NzkxMX0.DUINGqeTvlHi_647Vbu9CS47zlhJn9gk6n9xQkWJl8E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "restaurant_id",
+							"value": "9",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "itemname",
+							"value": "mie ayam",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "12000",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "noodle with chicken",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "10",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/restaurant/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"restaurant",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin edit items",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlciIsImlkIjoxNCwicm9sZXMiOjMsImlhdCI6MTU4MDk4NzkxMX0.DUINGqeTvlHi_647Vbu9CS47zlhJn9gk6n9xQkWJl8E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "restaurant_id",
+							"value": "9",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "itemname",
+							"value": "mie ayam mantul",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "12000",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "local noodle with chicken",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "10",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/restaurant/24",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"restaurant",
+						"24"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin update item foto",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlciIsImlkIjoxNCwicm9sZXMiOjMsImlhdCI6MTU4MDk4NzkxMX0.DUINGqeTvlHi_647Vbu9CS47zlhJn9gk6n9xQkWJl8E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/E:/laragon/www/b13/template/f3.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/restaurant/foto/24",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"restaurant",
+						"foto",
+						"24"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin delete items",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RlciIsImlkIjoxNCwicm9sZXMiOjMsImlhdCI6MTU4MDk4NzkxMX0.DUINGqeTvlHi_647Vbu9CS47zlhJn9gk6n9xQkWJl8E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4000/restaurant/24",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"restaurant",
+						"24"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
