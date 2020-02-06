@@ -237,7 +237,7 @@ router.get('/items', (req, res) => {
     let sort = ''
     let page = 'LIMIT 15 OFFSET 0'
     let full_url = ''
-    const url = 'http://localhost:4000/'
+    const url = 'http://3.90.3.168:4000/'
 
     if (query.search) {
         let count = 1
