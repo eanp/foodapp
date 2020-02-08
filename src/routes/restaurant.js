@@ -71,13 +71,24 @@ router.get('/:id/', auth, (req, res) => {
     const {
         id
     } = req.params;
-    mysql.execute(`SELECT * FROM items WHERE restaurant_id=${id}`, [], (err, result, field) => {
+    mysql.execute(`SELECT items.id, itemname, price, items.image, items.description, items.category AS id_cat,category.category AS category, items.restaurant_id AS id_resto, restaurants.name as restaurant, items.created_on FROM items INNER JOIN category ON items.category=category.id INNER JOIN restaurants ON items.restaurant_id=restaurants.id WHERE restaurants.user_id=${id}`, [], (err, result, field) => {
         res.send({
             status: 200,
             result: result
         });
     })
 })
+// router.get('/:id/', auth, (req, res) => {
+//     const {
+//         id
+//     } = req.params;
+//     mysql.execute(`SELECT * FROM items WHERE restaurant_id=${id}`, [], (err, result, field) => {
+//         res.send({
+//             status: 200,
+//             result: result
+//         });
+//     })
+// })
 // SELECT * FROM items WHERE restaurant_id=${id}
 
 // Restaurant register item (CREATE)
